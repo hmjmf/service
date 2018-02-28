@@ -16,7 +16,7 @@
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-
+#include <string>
 
 using boost::asio::ip::tcp;
 
@@ -36,6 +36,7 @@ private:
     socket_.async_read_some(boost::asio::buffer(data_, max_length),
         [this, self](error_code errorCode, std::size_t len){
           if(!errorCode){
+            LOG(INFO) << "read : " << std::string(data_).substr(0,len - 1) + '\0';
             do_write(len);
           } else {
             LOG(ERROR) << "do_read error : " << errorCode.value();
