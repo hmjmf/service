@@ -19,7 +19,7 @@
 using namespace std;
 
 namespace http {
-namespace web {
+namespace post {
 
 class connection_manager {
 public:

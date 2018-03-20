@@ -21,7 +21,7 @@
 #include "request.hpp"
 
 namespace http {
-namespace web {
+namespace post {
 
 request_handler::request_handler(const std::string& doc_root)
     : doc_root_(doc_root)

@@ -26,7 +26,7 @@ using boost::asio::ip::tcp;
 using namespace std;
 
 namespace http {
-namespace web {
+namespace post {
 
 class connection_manager;
 class connection : public std::enable_shared_from_this<connection>{

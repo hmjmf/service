@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <boost/asio.hpp>
-#include "http_server.hpp"
+#include "post_server.hpp"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
       return 1;
     }
 
-    http::web::server s(argv[1], argv[2], argv[3]);
+    http::post::server s(argv[1], argv[2], argv[3]);
     s.run();
 
   } catch (exception& e) {

@@ -1,5 +1,5 @@
 /*******************************************************
- *  http_server
+ *  post_server
  *  My Website           https://zhangqixiang.cn
  *  My Github            https://github.com/hmjmf
  *  Email                zqx5449@gmail.com
@@ -10,8 +10,8 @@
 
 
 
-#ifndef SERVICE_HTTP_SERVER_HPP
-#define SERVICE_HTTP_SERVER_HPP
+#ifndef SERVICE_POST_SERVER_HPP
+#define SERVICE_POST_SERVER_HPP
 
 #include <iostream>
 #include <boost/asio.hpp>
@@ -23,14 +23,16 @@
 using namespace std;
 
 namespace http {
-namespace web {
+namespace post {
 
 class server {
 public:
-  server(const server&) = delete;
-  server& operator=(const server&) = delete;
-  explicit server(const string& address, const string& port,
-                  const string& doc_root);
+  server(const server &) = delete;
+
+  server &operator=(const server &) = delete;
+
+  explicit server(const string &address, const string &port,
+                  const string &doc_root);
 
   void run();
 
@@ -50,10 +52,8 @@ private:
 
 
 };
-
-
 }
 }
 
 
-#endif //SERVICE_HTTP_SERVER_HPP
+#endif //SERVICE_POST_SERVER_HPP

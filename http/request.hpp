@@ -1,5 +1,5 @@
 /*******************************************************
- *  connection_manager
+ *  request
  *  My Website           https://zhangqixiang.cn
  *  My Github            https://github.com/hmjmf
  *  Email                zqx5449@gmail.com
@@ -10,35 +10,25 @@
 
 
 
-#include "connection_manager.hpp"
+#ifndef SERVICE_REQUEST_HPP
+#define SERVICE_REQUEST_HPP
+
+#include <string>
+#include <vector>
+#include "header.hpp"
 
 namespace http {
 namespace web {
 
-connection_manager::connection_manager() {}
-
-
-void connection_manager::start(connection_ptr c) {
-  connections_.insert(c);
-  c->start();
-}
-
-void connection_manager::stop(connection_ptr c) {
-  connections_.erase(c);
-  c->stop();
-}
-
-void connection_manager::stop_all() {
-  for (auto c: connections_){
-    c->stop();
-  }
-  connections_.clear();
-}
-
-
-
-
-
+struct request
+{
+  std::string method;
+  std::string uri;
+  int http_version_major;
+  int http_version_minor;
+  std::vector<header> headers;
+};
 
 }
 }
+#endif //SERVICE_REQUEST_HPP

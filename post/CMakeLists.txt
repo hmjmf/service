@@ -13,10 +13,16 @@ endif()
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
+file(GLOB hrds ./*.hpp)
+file(GLOB srcs ./*.cpp)
+add_executable(post_service ${hrds} ${srcs})
+if(APPLE)
+    target_link_libraries(post_service  ${Boost_LIBRARIES} ${Boost_SYSTEM_LIBRARY})
+else()
+    target_link_libraries(post_service Boost::thread ${Boost_LIBRARIES} ${Boost_SYSTEM_LIBRARY})
+endif()
 
 
-add_executable(post_service post_service.cpp)
-target_link_libraries(post_service ${Boost_LIBRARIES} ${Boost_SYSTEM_LIBRARY} glog::glog)
 
 
 

@@ -13,7 +13,7 @@
 #include "connection.hpp"
 #include "connection_manager.hpp"
 namespace http {
-namespace web {
+namespace post {
 
 
 connection::connection(tcp::socket socket, connection_manager& manager,
