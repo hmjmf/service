@@ -15,7 +15,9 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "header.hpp"
+
 
 namespace http {
 namespace post {
@@ -27,6 +29,7 @@ struct request
   int http_version_major;
   int http_version_minor;
   std::vector<header> headers;
+  std::map<std::string,std::string> bodys;
 };
 
 }

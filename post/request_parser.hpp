@@ -14,6 +14,9 @@
 #define SERVICE_REQUEST_PARSER_HPP
 
 #include <string>
+#include <boost/algorithm/string.hpp>
+#include <iostream>
+#include "request.hpp"
 
 using namespace std;
 
@@ -38,6 +41,12 @@ public:
     while (begin != end){
       result_type result = consume(req, *begin++);
       if (result == good || result == bad) {
+        try {
+          parse_body(req, begin, end);
+        } catch (std::exception e){
+          std::cerr << e.what();
+          result = bad;
+        }
         return make_tuple(result, begin);
       }
     }
@@ -45,6 +54,21 @@ public:
   };
 
 private:
+  template <typename InputIterator>
+  void parse_body(request &req, InputIterator begin, InputIterator end) throw(){
+    string s = string(begin,end);
+    vector<string> bodys;
+    boost::split(bodys, s, boost::is_any_of("&"));
+    for (auto body_pair : bodys){
+      vector<string> key_value;
+      boost::split(key_value, body_pair, boost::is_any_of("="));
+      if( key_value.size() != 2){
+        throw std::runtime_error("key_value.size() != 2");
+      }
+      req.bodys[key_value[0]] = key_value[2];
+    }
+  }
+
   result_type consume(request& req, char input);
 
   /// Check if a byte is an HTTP character.

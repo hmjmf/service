@@ -11,14 +11,13 @@
 
 
 #include "request_handler.hpp"
-
-#include "request_handler.hpp"
 #include <fstream>
 #include <sstream>
 #include <string>
 #include "mime_types.hpp"
 #include "reply.hpp"
 #include "request.hpp"
+#include <iostream>
 
 namespace http {
 namespace post {
@@ -37,6 +36,9 @@ void request_handler::handle_request(const request& req, reply& rep)
     rep = reply::stock_reply(reply::bad_request);
     return;
   }
+  std::cerr << request_path;
+
+
 
   // Request path must be absolute and not contain "..".
   if (request_path.empty() || request_path[0] != '/'

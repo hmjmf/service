@@ -35,12 +35,13 @@ void connection::do_read() {
   auto self(shared_from_this());
   socket_.async_read_some(boost::asio::buffer(buffer_),
     [this,self](boost::system::error_code ec, size_t bytes_transferred) {
-      cerr << buffer_.data() << endl;
+
 
       if (!ec){
         request_parser::result_type result;
         tie(result, ignore) = request_parser_.parse(
             request_, buffer_.data(), buffer_.data() + bytes_transferred);
+
 
         if (result == request_parser::good) {
           request_handler_.handle_request(request_, reply_);
@@ -60,7 +61,6 @@ void connection::do_read() {
 
 void connection::do_write() {
   auto self(shared_from_this());
-
   boost::asio::async_write(socket_, reply_.to_buffers(),
     [this, self](boost::system::error_code ec, std::size_t){
       if (!ec){
