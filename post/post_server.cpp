@@ -16,13 +16,11 @@ namespace post {
 
 using boost::asio::ip::tcp;
 
-server::server(const string& address, const string& port,
-               const string& doc_root)
+server::server(const string& address, const string& port)
     : io_context_(1),
       signals_(io_context_),
       acceptor_(io_context_),
-      connection_manager_(),
-      request_handler_(doc_root){
+      connection_manager_(){
 
   signals_.add(SIGINT);
   signals_.add(SIGTERM);

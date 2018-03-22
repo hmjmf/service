@@ -31,8 +31,7 @@ public:
 
   server &operator=(const server &) = delete;
 
-  explicit server(const string &address, const string &port,
-                  const string &doc_root);
+  explicit server(const string &address, const string &port);
 
   void run();
 
