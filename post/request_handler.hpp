@@ -16,6 +16,9 @@
 #include <string>
 #include "request.hpp"
 #include "reply.hpp"
+#include <fstream>
+#include "mime_types.hpp"
+#include <iostream>
 
 
 using namespace std;

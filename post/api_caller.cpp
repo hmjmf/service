@@ -16,18 +16,16 @@ namespace post {
 
 api_caller* api_caller::instance_ = new api_caller;
 
-void api_caller::register_api(const string& path,
-                              function<string(map<string, string>)>& handler){
+void api_caller::register_api(const string& path, handler_type& handler){
   register_api(path,std::move(handler));
 }
 
-void api_caller::register_api(const string& path,
-                              function<string(map<string, string>)>&& handler){
+void api_caller::register_api(const string& path, handler_type&& handler){
   api_map_[path] = handler;
 }
 
 api_caller::state api_caller::call_api(const string& path,
-                                       map<string,string>& arg,
+                                       map<string,string> arg,
                                        string& result)  {
   try {
     result = api_map_[path](arg);
@@ -36,6 +34,10 @@ api_caller::state api_caller::call_api(const string& path,
     cerr << e.what() << endl;
     return fail;
   }
+}
+
+bool api_caller::is_alive_api(string &path){
+  return api_map_.find(path) != api_map_.end();
 }
 
 

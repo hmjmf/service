@@ -65,7 +65,7 @@ private:
       if( key_value.size() != 2){
         throw std::runtime_error("key_value.size() != 2");
       }
-      req.bodys[key_value[0]] = key_value[2];
+      req.bodys[key_value[0]] = key_value[1];
     }
   }
 

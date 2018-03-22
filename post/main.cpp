@@ -13,12 +13,14 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include "post_server.hpp"
-
+#include "api_caller.hpp"
+#include "api.hpp"
 using namespace std;
 
 
 
 int main(int argc, char* argv[]) {
+  http::post::api_caller::getInstance()->register_api("to_json", to_json);
   try{
     if (argc != 4){
       std::cerr << "Usage: http_server <address> <port> <doc_root>\n";
