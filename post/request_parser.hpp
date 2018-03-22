@@ -55,7 +55,7 @@ public:
 
 private:
   template <typename InputIterator>
-  void parse_body(request &req, InputIterator begin, InputIterator end) throw(){
+  void parse_body(request &req, InputIterator begin, InputIterator end) {
     string s = string(begin,end);
     vector<string> bodys;
     boost::split(bodys, s, boost::is_any_of("&"));
