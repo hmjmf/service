@@ -22,8 +22,9 @@
 namespace http {
 namespace post {
 
-struct request
+class request
 {
+public:
   std::string method;
   std::string uri;
   int http_version_major;

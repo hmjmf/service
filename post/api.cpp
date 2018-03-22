@@ -15,7 +15,7 @@
 
 
 using namespace boost::property_tree;
-string to_json(map<string,string> input){
+string to_json(map<string,string>& input){
   //http://einverne.github.io/post/2016/01/boost-learning-note-7.html
   ptree root;
   for (auto i: input){

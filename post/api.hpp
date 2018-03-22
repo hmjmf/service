@@ -21,7 +21,7 @@
 
 using namespace std;
 
-string to_json(map<string,string> input);
+string to_json(map<string,string>& input);
 
 
 #endif //SERVICE_API_HPP

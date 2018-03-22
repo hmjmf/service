@@ -32,24 +32,24 @@ public:
   const api_caller& operator=(const api_caller &rhs) = delete;
   api_caller(const api_caller& rhs) = delete;
 
-  typedef function<string(map<string,string>)> handler_type;
+  typedef function<string(map<string,string>&)> handler_type;
   enum state { fail, success };
 
 
   void register_api(const string& path, handler_type& handler);
   void register_api(const string& path, handler_type&& handler);
 
-  state call_api(const string& path, map<string,string> arg,string& result);
+  state call_api(const string& path, map<string,string>& arg,string& result);
 
 
-  bool is_alive_api(string &path);
+  bool is_alive_api(string &path) const;
 
 
 private:
   static api_caller* instance_;
-  api_caller(){}
+  api_caller() = default;
 
-  map<string, function<string(map<string,string>)>> api_map_;
+  map<string, handler_type> api_map_;
 };
 
 }

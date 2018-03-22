@@ -16,10 +16,9 @@
 namespace http {
 namespace post {
 
-request_handler::request_handler() {
-}
 
-void request_handler::handle_request(const request& req, reply& rep)
+
+void request_handler::handle_request(request& req, reply& rep)
 {
   // Decode url to path.
   std::string request_path;
@@ -36,7 +35,7 @@ void request_handler::handle_request(const request& req, reply& rep)
     rep = reply::stock_reply(reply::bad_request);
     return;
   }
-  if (request_path.size() >= 1 && request_path[0] == '/'){
+  if (!request_path.empty() && request_path[0] == '/'){
     request_path = request_path.substr(1,request_path.size());
   }
 
@@ -49,9 +48,8 @@ void request_handler::handle_request(const request& req, reply& rep)
   // Fill out the reply to be sent to the client.
   rep.status = reply::ok;
 
-
   http::post::api_caller::getInstance()->
-      call_api(request_path, req.bodys ,rep.content);
+      call_api(request_path, req.bodys,rep.content);
 
   rep.headers.resize(2);
   rep.headers[0].name = "Content-Length";

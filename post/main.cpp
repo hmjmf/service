@@ -18,7 +18,6 @@
 using namespace std;
 
 
-
 int main(int argc, char* argv[]) {
   http::post::api_caller::getInstance()->register_api("to_json", to_json);
   try{
