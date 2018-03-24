@@ -15,7 +15,7 @@
 namespace http {
 namespace post {
 
-connection_manager::connection_manager() {}
+
 
 
 void connection_manager::start(connection_ptr c) {
@@ -29,7 +29,7 @@ void connection_manager::stop(connection_ptr c) {
 }
 
 void connection_manager::stop_all() {
-  for (auto c: connections_){
+  for (auto const & c: connections_){
     c->stop();
   }
   connections_.clear();

@@ -36,7 +36,6 @@ public:
   enum state { fail, success };
 
 
-  void register_api(const string& path, handler_type& handler);
   void register_api(const string& path, handler_type&& handler);
 
   state call_api(const string& path, map<string,string>& arg,string& result);

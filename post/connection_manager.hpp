@@ -27,7 +27,7 @@ public:
   connection_manager(const connection_manager&) = delete;
   connection_manager& operator=(const connection_manager&) = delete;
 
-  connection_manager();
+  connection_manager() = default;
 
 
   void start(connection_ptr c);

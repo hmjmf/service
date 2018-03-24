@@ -16,9 +16,6 @@ namespace post {
 
 api_caller* api_caller::instance_ = new api_caller;
 
-void api_caller::register_api(const string& path, handler_type& handler){
-  register_api(path,std::move(handler));
-}
 
 void api_caller::register_api(const string& path, handler_type&& handler){
   api_map_[path] = handler;
